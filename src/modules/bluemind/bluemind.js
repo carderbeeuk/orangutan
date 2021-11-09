@@ -7,8 +7,9 @@ const getOffers = async (searchTerm) => {
     const min_price = queryParams['min_price'] || null
     const max_price = queryParams['max_price'] || null
     const brand = queryParams['brand'] || null
+    const delivery = queryParams['delivery'] || null
 
-    const response = await axios.get(`/product-search/uk/${searchTerm}?limit=32&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}`)
+    const response = await axios.get(`/product-search/uk/${searchTerm}?limit=32&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&delivery=${delivery}`)
     return response.data
 }
 
