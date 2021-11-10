@@ -40,7 +40,7 @@ export default function CategorySection(props) {
                 paddingTop: 0
             }}>
                 <Link
-                    to={{pathname: `/shopping/search/${props.category.key}`}}
+                    to={{pathname: `/shopping/category/${props.category.key}`}}
                     style={{fontSize: '1.2em'}}>
                     View More <i style={{color: 'rgb(0, 113, 188)', fontSize: '1.1em', marginLeft: '5px'}} className="fas fa-chevron-down"></i>
                 </Link>
