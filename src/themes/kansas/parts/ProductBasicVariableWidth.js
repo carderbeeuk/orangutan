@@ -1,7 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { encode as base64_encode } from 'js-base64'
 
 export default function ProductBasicVariableWidth(props) {
+    const [showOfferCount, setShowOfferCount] = useState(true)
+
+    useEffect(() => {
+        if('showOfferCount' in props) {
+            setShowOfferCount(props.showOfferCount)
+        }
+    }, [])
+
     return(
         <div key={props.idx} className='col-xs-6 product basic'>
             <div className='product-inner'>
@@ -35,7 +43,7 @@ export default function ProductBasicVariableWidth(props) {
                         </p>
                     </a>
                     <a href={`/shopping/product/${base64_encode(props.offer.product._source.product_codes.join('_'))}`}>
-                        {props.offer.offer_count > 1 ? <Fragment><hr/><p className='compare-link'>Compare from {props.offer.offer_count} offers</p></Fragment> : null}
+                        {props.offer.offer_count > 1 && showOfferCount ? <Fragment><hr/><p className='compare-link'>Compare from {props.offer.offer_count} offers</p></Fragment> : null}
                     </a>
                 </div>
             </div>

@@ -16,6 +16,7 @@ export default function ShoppingSingle(props) {
     const init = async () => {
         const product = await getProductSingle(props.match.params.productCode)
         setProduct(product)
+        document.title = props.siteConfig.siteName + ' | ' + product.product._source.title
     }
 
     if(!product) return null

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import Header from './common/Header'
 import Footer from './common/Footer'
+import HomeCategories from './parts/HomeCategories'
 
 export default function Home(props) {
     useEffect(() => {
@@ -10,6 +11,7 @@ export default function Home(props) {
     return(
         <Fragment>
             <Header {...props} />
+            <HomeCategories {...props} />
             <Footer {...props} />
         </Fragment>
     )
