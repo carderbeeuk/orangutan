@@ -36,10 +36,10 @@ export default function Header(props) {
                 }}>
                     <Link to={'/'}>
                         <img
-                            src='/images/logo.png'
+                            src={`/images/${props.siteConfig.site}/logo.png`}
                             alt='Logo'
                             style={{
-                                height: '36px'
+                                height: '40px'
                             }} />
                     </Link>
                 </p>
@@ -49,10 +49,10 @@ export default function Header(props) {
                 }}>
                     <Link to={'/'}>
                         <img
-                            src='/images/logo.png'
+                            src={`/images/${props.siteConfig.site}/logo.png`}
                             alt='Logo'
                             style={{
-                                height: '30px',
+                                height: '35px',
                                 marginTop: '-10px'
                             }} />
                     </Link>

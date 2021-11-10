@@ -20,7 +20,7 @@ function App() {
     return (
         <div>
             <Suspense fallback={null}>
-                <Router siteConfig={siteConfig} />
+                <Router siteConfig={siteConfig} site={site} />
             </Suspense>
         </div>
     )

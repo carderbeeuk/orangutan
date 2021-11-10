@@ -16,6 +16,7 @@ export default function ShoppingFilters(props) {
 
     const getFilters = async (data) => {
         var brands = []
+        var categories = []
         var delivery = [
             'Free delivery'
         ]
@@ -25,12 +26,18 @@ export default function ShoppingFilters(props) {
                 if(!brands.includes(offer._source.manufacturer) && offer._source.manufacturer) {
                     brands.push(offer._source.manufacturer);
                 }
+                const categoryArr = offer._source.google_category_name.split(' > ')
+                const category = categoryArr.slice(-1)[0]
+                if(!categories.includes(category) && category) {
+                    categories.push(category)
+                }
             })
         })
 
         const filters = {
+            category: categories,
             brand: brands,
-            delivery: delivery
+            delivery: delivery,
         }
 
         setFilters(filters)
@@ -121,7 +128,6 @@ export default function ShoppingFilters(props) {
     }
 
     const renderClearFilters = () => {
-        console.log('appliedFilters', Object.keys(appliedFilters).length)
         if(Object.keys(appliedFilters).length > 0) {
             return <div className="clear-filters"><span onClick={clearFilters}><i class="fas fa-times-circle"></i> Clear all filters</span></div>
         } else {
@@ -133,6 +139,13 @@ export default function ShoppingFilters(props) {
         <Fragment>
             {renderClearFilters()}
             <div>
+                <div className='filter-block'>
+                    <h6>Sort</h6>
+                    <select className='sort-select' onChange={handleSort} value={appliedFilters['sort']} defaultValue='price_desc'>
+                        <option value="price_asc">Price - Low to High</option>
+                        <option value="price_desc">Price - High to Low</option>
+                    </select>
+                </div>
                 <div className='filter-block'>
                     <h6>Price</h6>
                     <input className='price-filter' id='minPrice' type='text' onChange={updatePrices} value={minPrice || ''} placeholder={`${getCurrencySymbol()} min`} />

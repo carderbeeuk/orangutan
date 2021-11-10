@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import getOffers from '../../modules/bluemind/bluemind'
+import { getOffers } from '../../modules/bluemind/bluemind'
 import Header from './common/Header'
 import Footer from './common/Footer'
 import ProductBasicVariableWidth from './parts/ProductBasicVariableWidth'
@@ -23,9 +23,9 @@ export default function ShoppingSearch(props) {
         <Fragment>
             <Header {...props} />
             <div className='outer row' style={{
-                margin: 0
+                margin: 0,
+                minHeight: 'calc(100vh - 200px)'
             }}>
-                <div className='clearfixx'></div>
                 <div className='col-md-2 d-none d-lg-block' style={{
                     paddingRight: 0
                 }}>
