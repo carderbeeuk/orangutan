@@ -26,7 +26,7 @@ export default function CookieDisclaimer() {
                 <p className='col-md-9 col-sm-12'>We use anonymous cookies to enhance site navigation and analyse site usage. <Link to='/legal/privacy-policy'>Privacy Policy</Link></p>
                 <p className='col-md-3 col-sm-12' style={{
                     textAlign: 'right'
-                }}><button onClick={acceptDisclaimer}>Continue</button><i onClick={rejectDisclaimer} class="fas fa-times"></i></p>
+                }}><button onClick={acceptDisclaimer}>Continue</button><i onClick={rejectDisclaimer} className="fas fa-times"></i></p>
             </div>
         </div>
     )

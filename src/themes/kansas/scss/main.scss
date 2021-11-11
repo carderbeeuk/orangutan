@@ -418,6 +418,18 @@ input[type="text"], input[type="number"], select {
         background: #0071bc;
         color: #fff
     }
+
+    .offer-feature {
+        color: grey;
+        display: inline-block;
+        margin-right: 5px;
+        border: 1px solid #e0e0e0;
+        border-radius: 13px;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 10px;
+        font-size: 0.9em;
+    }
 }
 
 .offer-disclaimer {

@@ -129,7 +129,7 @@ export default function ShoppingFilters(props) {
 
     const renderClearFilters = () => {
         if(Object.keys(appliedFilters).length > 0) {
-            return <div className="clear-filters"><span onClick={clearFilters}><i class="fas fa-times-circle"></i> Clear all filters</span></div>
+            return <div className="clear-filters"><span onClick={clearFilters}><i className="fas fa-times-circle"></i> Clear all filters</span></div>
         } else {
             return null
         }

@@ -88,8 +88,8 @@ export default function PrivacyPolicy(props) {
 
                     <h3>Opt-Out/In</h3>
 
-                    <p>You can opt-out of the saving third party cookies on {props.siteConfig.siteName} by clicking '<a href="#" class="refuseCookies">I refuse</a>'.</p>
-                    <p>Alternatively, you can opt-in to the saving of third party cookies on {props.siteConfig.siteName} by clicking '<a href="#" class="allowCookies">I accept</a>'.</p>
+                    <p>You can opt-out of the saving third party cookies on {props.siteConfig.siteName} by clicking '<a href="#" className="refuseCookies">I refuse</a>'.</p>
+                    <p>Alternatively, you can opt-in to the saving of third party cookies on {props.siteConfig.siteName} by clicking '<a href="#" className="allowCookies">I accept</a>'.</p>
 
                     <h2>Links to other websites</h2>
                     <p>We may present links in such a way that will allow us to track whether these links have been followed. This information is used to improve our search engine, content and advertising.</p>

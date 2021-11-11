@@ -16,7 +16,6 @@ export default function ShoppingSearch(props) {
 
     const initOffers = async () => {
         const offers = await getOffersByCategory(props.match.params.categoryId)
-        console.log(offers)
         setOffers(offers)
     }
 
