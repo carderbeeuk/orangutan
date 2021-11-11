@@ -42,7 +42,7 @@ export default function ProductBasicVariableWidth(props) {
                         }
                         </p>
                     </a>
-                    <a href={`/shopping/product/${base64_encode(props.offer.product._source.product_codes.join('_'))}`}>
+                    <a href={`/shopping/product/${base64_encode(props.offer.product._source.product_code)}`}>
                         {props.offer.offer_count > 1 && showOfferCount ? <Fragment><hr/><p className='compare-link'>Compare from {props.offer.offer_count} offers</p></Fragment> : null}
                     </a>
                 </div>
