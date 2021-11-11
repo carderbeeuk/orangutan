@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Sombrero
+> React multi-site housing application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
 
-## Available Scripts
+### Requirements
+```
+- git
+- nginx
+- nodejs
+- npm
+- supervisor
+```
 
-In the project directory, you can run:
+### Clone the repo
+```
+cd /srv
+sudo mkdir sombrero
+cd sombrero
+sudo git clone https://code.tvoct.net/Tekpaw/sombrero.git .
+```
 
-### `npm start`
+### Add and update permissions
+```
+sudo adduser sombrerouser
+sudo groupadd developers
+sudo usermod -a -G developers {developer_name}
+sudo chown -R sombrerouser:developers /srv/sombrero
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Install requirements
+```
+sudo npm install -g serve
+npm install --save # installs all from package.json
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Set up config and build the application
+```
+cd /srv/sombrero
+nano .env
+```
 
-### `npm test`
+#### On Production/Dev
+in the `.env` file set the bearer_token for calling bluemind (can be found in bluemind config)
+```
+REACT_APP_BEARER_TOKEN={bearer_token}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### On Local
+in the `.env.local` file set the bearer_token for calling bluemind and the app site (app site is for testing websites on localhost)
+```
+REACT_APP_BEARER_TOKEN={bearer_token}
+REACT_APP_SITE={site_name} # e.g. findwithusnet
+```
 
-### `npm run build`
+#### Run the first build
+```
+cd /srv/sombrero
+npm run build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Running the application
+set up the supervisor config in `/etc/supervisor/conf.d/sombrero.conf`
+```
+[program:sombrero]
+directory=/srv/sombrero
+command=serve -s build -l tcp://localhost:3000
+user=sombrerouser
+autostart=true
+autorestart=true
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Serving the app using nginx
+set up for nginx in `/etc/nginx/sites-available/{website}.conf`
+repeat for each website in the application
+```
+server {
+    listen 80;
+    server_name {website};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+}
+```
+set site enabled
+```
+cd /etc/nginx/sites-enabled
+sudo ln -s ../sites-available/{website}.com.conf
+```
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Setting up SSL
+follow instrunctions here:
+https://certbot.eff.org/lets-encrypt/debianbuster-nginx
