@@ -2,7 +2,7 @@ import CategorySection from './HomeCategories/CategorySection'
 
 const categories = [
     {
-        key: 'Clothing & Accessories',
+        key: 'Clothing',
         title: 'Clothing & Accessories',
         description: 'Shop clothing, shoes, and accessories for every occasion',
     },
