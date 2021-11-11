@@ -10,6 +10,7 @@ export default function Router(props) {
     const ShoppingCategory = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/ShoppingCategory`))
     const PrivacyPolicy = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/PrivacyPolicy`))
     const TermsAndConditions = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/TermsAndConditions`))
+    const CookieDisclaimer = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/parts/CookieDisclaimer`))
 
     useEffect(() => {
         import (`../../themes/${siteConfig.theme}/scss/main.scss`)
@@ -18,6 +19,8 @@ export default function Router(props) {
 
     return(
         <Fragment>
+            <CookieDisclaimer {...props} />
+
             <Switch>
 
                 {/* Home */}
