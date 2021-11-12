@@ -1,5 +1,6 @@
 import React, { Fragment, Suspense, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
+
 import './scss/main.scss'
 
 export default function Router(props) {
@@ -11,6 +12,7 @@ export default function Router(props) {
     const PrivacyPolicy = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/PrivacyPolicy`))
     const TermsAndConditions = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/TermsAndConditions`))
     const CookieDisclaimer = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/parts/CookieDisclaimer`))
+    const NotFound = React.lazy(() => import(`../../themes/${props.siteConfig.theme}/NotFound`))
 
     useEffect(() => {
         import (`../../themes/${siteConfig.theme}/scss/main.scss`)
@@ -57,6 +59,11 @@ export default function Router(props) {
                     (props) => <Suspense fallback={null}>
                         <TermsAndConditions {...props} siteConfig={siteConfig} />
                     </Suspense>
+                }></Route>
+
+                {/* not found */}
+                <Route path='*' render={
+                    (props) => <NotFound {...props} siteConfig={siteConfig} />
                 }></Route>
 
             </Switch>
