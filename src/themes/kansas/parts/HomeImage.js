@@ -1,7 +1,7 @@
 export default function HomeImage(props) {
     return (
         <img
-            src={`/images/${props.siteConfig.site}/shopping-bags.png`}
+            src={`/images/${props.siteConfig.site}/shopping-bags.jpg`}
             alt={`${props.siteConfig.siteName}`}
             className='col-md-6 col-sm-12 col-xs-12'
             style={{
