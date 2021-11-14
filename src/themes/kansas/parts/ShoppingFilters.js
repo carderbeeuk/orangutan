@@ -141,7 +141,8 @@ export default function ShoppingFilters(props) {
             <div>
                 <div className='filter-block'>
                     <h6>Sort</h6>
-                    <select className='sort-select' onChange={handleSort} value={appliedFilters['sort']} defaultValue='price_desc'>
+                    <select className='sort-select' onChange={handleSort} value={appliedFilters['sort']} defaultValue='relevance'>
+                        <option value="relevance">Relevance</option>
                         <option value="price_asc">Price - Low to High</option>
                         <option value="price_desc">Price - High to Low</option>
                     </select>
