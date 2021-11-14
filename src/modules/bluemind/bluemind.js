@@ -3,7 +3,7 @@ import queryString from 'query-string'
 
 const getOffers = async (searchTerm, limit=32, market='uk') => {
     const queryParams = queryString.parse(window.location.search)
-    const sort = queryParams['sort'] || 'price_desc'
+    const sort = queryParams['sort'] || 'relevance'
     const min_price = queryParams['min_price'] || null
     const max_price = queryParams['max_price'] || null
     const brand = queryParams['brand'] || null
@@ -21,7 +21,7 @@ const getProductSingle = async (productCode, market='uk') => {
 
 const getOffersByCategory = async (categoryName, limit=32, market='uk') => {
     const queryParams = queryString.parse(window.location.search)
-    const sort = queryParams['sort'] || 'price_desc'
+    const sort = queryParams['sort'] || 'relevance'
     const min_price = queryParams['min_price'] || null
     const max_price = queryParams['max_price'] || null
     const brand = queryParams['brand'] || null
