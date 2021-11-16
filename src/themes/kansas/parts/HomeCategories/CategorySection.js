@@ -1,7 +1,6 @@
 import ProductBasicVariableWidth from '../ProductBasicVariableWidth'
-import { getOffersByCategory } from '../../../../modules/bluemind/bluemind'
+import { getOffersByCategory } from '../../../../modules/sherbert-lemon/sherbert-lemon'
 import { useState, useEffect } from 'react'
-import queryString from 'query-string'
 import { Link } from 'react-router-dom'
 
 export default function CategorySection(props) {

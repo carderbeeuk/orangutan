@@ -1,5 +1,5 @@
-# Sombrero
-> React multi-site housing application
+# orangutan
+> React multi-site housing application (muttley v2)
 
 ## Installation
 
@@ -15,17 +15,17 @@
 ### Clone the repo
 ```
 cd /srv
-sudo mkdir sombrero
-cd sombrero
-sudo git clone https://code.tvoct.net/Tekpaw/sombrero.git .
+sudo mkdir orangutan
+cd orangutan
+sudo git clone https://github.com/carderbeeuk/orangutan.git .
 ```
 
 ### Add and update permissions
 ```
-sudo adduser sombrerouser
+sudo adduser carderbee
 sudo groupadd developers
 sudo usermod -a -G developers {developer_name}
-sudo chown -R sombrerouser:developers /srv/sombrero
+sudo chown -R carderbee:developers /srv/orangutan
 ```
 
 ### Install requirements
@@ -36,36 +36,36 @@ npm install --save # installs all from package.json
 
 ### Set up config and build the application
 ```
-cd /srv/sombrero
+cd /srv/orangutan
 nano .env
 ```
 
 #### On Production/Dev
-in the `.env` file set the bearer_token for calling bluemind (can be found in bluemind config)
+in the `.env` file set the bearer_token for calling sherbert-lemon (can be found in sherbert-lemon config)
 ```
 REACT_APP_BEARER_TOKEN={bearer_token}
 ```
 
 #### On Local
-in the `.env.local` file set the bearer_token for calling bluemind and the app site (app site is for testing websites on localhost)
+in the `.env.local` file set the bearer_token for calling sherbert-lemon and the app site (app site is for testing websites on localhost)
 ```
 REACT_APP_BEARER_TOKEN={bearer_token}
-REACT_APP_SITE={site_name} # e.g. findwithusnet
+REACT_APP_SITE={site_name} # e.g. ukcarderbeecom
 ```
 
 #### Run the first build
 ```
-cd /srv/sombrero
+cd /srv/orangutan
 npm run build
 ```
 
 ### Running the application
-set up the supervisor config in `/etc/supervisor/conf.d/sombrero.conf`
+set up the supervisor config in `/etc/supervisor/conf.d/orangutan.conf`
 ```
-[program:sombrero]
-directory=/srv/sombrero
+[program:orangutan]
+directory=/srv/orangutan
 command=serve -s build -l tcp://localhost:3000
-user=sombrerouser
+user=carderbee
 autostart=true
 autorestart=true
 ```
@@ -79,7 +79,7 @@ server {
     server_name {website};
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3080;
     }
 }
 ```

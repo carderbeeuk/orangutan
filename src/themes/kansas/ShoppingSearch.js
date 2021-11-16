@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { getOffers } from '../../modules/bluemind/bluemind'
+import { getOffers } from '../../modules/sherbert-lemon/sherbert-lemon'
 import Header from './common/Header'
 import Footer from './common/Footer'
 import ProductBasicVariableWidth from './parts/ProductBasicVariableWidth'

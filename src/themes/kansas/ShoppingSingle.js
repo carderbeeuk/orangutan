@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import Header from './common/Header'
 import Footer from './common/Footer'
-import { getProductSingle } from '../../modules/bluemind/bluemind'
+import { getProductSingle } from '../../modules/sherbert-lemon/sherbert-lemon'
 import ProductOffers from './parts/ProductOffers'
 import ProductOffersMobile from './parts/ProductOffersMobile'
 
