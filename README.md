@@ -64,7 +64,7 @@ set up the supervisor config in `/etc/supervisor/conf.d/orangutan.conf`
 ```
 [program:orangutan]
 directory=/srv/orangutan
-command=serve -s build -l tcp://localhost:3000
+command=serve -s build -l tcp://localhost:3080
 user=carderbee
 autostart=true
 autorestart=true
