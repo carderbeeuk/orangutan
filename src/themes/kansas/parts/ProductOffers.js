@@ -32,7 +32,7 @@ export default function ProductOffers(props) {
                                     }} src={offer._source.image_small} alt={offer._source.title} />
                                 </td>
                                 <td>
-                                    <a href={offer._source.click_out_url}>{offer._source.merchant}</a>
+                                    <a rel="nofollow" href={offer._source.click_out_url}>{offer._source.merchant}</a>
                                 </td>
                                 <td style={{color: 'grey'}}>
                                     {parseFloat(offer._source.delivery_cost) === 0 ?
@@ -60,7 +60,7 @@ export default function ProductOffers(props) {
                                     }
                                 </td>
                                 <td>
-                                    <a className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
+                                    <a rel="nofollow" className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
                                 </td>
                             </tr>
                         )

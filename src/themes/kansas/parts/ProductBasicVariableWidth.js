@@ -20,7 +20,7 @@ export default function ProductBasicVariableWidth(props) {
                         </div> :
                         null
                 }
-                <a href={props.offer.product._source.click_out_url}>
+                <a rel="nofollow" href={props.offer.product._source.click_out_url}>
                     <div className='visit-store'>
                         <p>Visit Store <i className="fas fa-external-link-alt"></i></p>
                     </div>

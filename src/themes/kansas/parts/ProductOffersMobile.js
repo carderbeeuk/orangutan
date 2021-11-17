@@ -36,7 +36,7 @@ export default function ProductOffersMobile(props) {
                                 }}>{offer._source.merchant}</p>
                             </div>
                             <div className='col-5'>
-                                <a className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
+                                <a rel="nofollow" className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
                             </div>
                         </div>
                         <div className='row' style={{
