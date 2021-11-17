@@ -6,7 +6,7 @@ import HomeCategories from './parts/HomeCategories'
 
 export default function Home(props) {
     useEffect(() => {
-        document.title = props.siteConfig.siteName + ' | Online Comparison Shopping Made Simple'
+        document.title = props.siteConfig.siteName + ' | Shop and Compare Online'
     }, [props])
 
     return(
