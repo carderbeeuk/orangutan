@@ -5,12 +5,26 @@ export default function Footer(props) {
         <footer>
             <div className='outer copyright'>
                 <div className='footer-content row inner'>
-                    <div className='col-sm-6'>
-                        <p>&copy; {props.siteConfig.copyright}</p>
+                    <div className='col-md-3 col-sm-12' style={{
+                        paddingTop: '15px'
+                    }}>
+                        <h5 style={{
+                            color: '#fff'
+                        }}>Our Address</h5>
+                        <p>22 Canal Boulevard<br/>Camden, London<br/>NW1 9AQ</p>
                     </div>
-                    <div className='col-sm-6'>
-                        <p style={{float: 'right'}}><Link to={'/legal/privacy-policy'}>Privacy Policy</Link></p>
-                        <p style={{float: 'right'}}><Link to={'/legal/terms-and-conditions'}>Terms and Conditions</Link></p>
+                    <div className='col-md-3 col-sm-12' style={{
+                        paddingTop: '25px'
+                    }}>
+                        <p style={{display: 'block'}}><Link to={'/legal/privacy-policy'}>Privacy Policy</Link></p>
+                        <p style={{display: 'block'}}><Link to={'/legal/terms-and-conditions'}>Terms and Conditions</Link></p>
+                    </div>
+                </div>
+            </div>
+            <div className='outer copyright light'>
+                <div className='footer-content row inner'>
+                    <div className='col-12'>
+                        <p>&copy; {props.siteConfig.copyright}</p>  
                     </div>
                 </div>
             </div>
