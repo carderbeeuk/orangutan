@@ -68,7 +68,8 @@ export default function ShoppingFilters(props) {
 
     const redirectWithFilters = () => {
         const urlParams = Object.entries(appliedFilters).map(filter => {
-            return `${filter[0]}=${filter[1]}`
+            const value = encodeURIComponent(filter[1])
+            return `${filter[0]}=${value}`
         })
         window.location.search = urlParams.join('&')
     }
