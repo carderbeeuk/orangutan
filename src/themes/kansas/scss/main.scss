@@ -255,6 +255,23 @@ input[type="text"], input[type="number"], select {
         &:hover > a .visit-store {
             display: block;
         }
+
+        .bookmark-product {
+            display: block;
+            position: absolute;
+            z-index: 9001;
+            top: 15px; right: 15px;
+            border-radius: 15px;
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            
+            i {
+                font-size: 1.3em;
+            }
+        }
     }
 
     .product-text {
@@ -265,9 +282,10 @@ input[type="text"], input[type="number"], select {
         display: none;
         position: absolute;
         width: 100%;
-        height: calc(100% - 60px);
+        margin-top: 25%;
+        height: 50%;
         left: 0; right: 0;
-        background: rgba(255, 255, 255, 0.6);
+        background-image: radial-gradient(#fff, transparent 70%);
         z-index: 8999;
 
         p {
@@ -277,14 +295,15 @@ input[type="text"], input[type="number"], select {
             text-align: center;
             line-height: 50px;
             padding: 0 15px;
-            background: #0071bc;
+            background: #0071bcde;
             color: #fff;
             width: 60%;
-            margin: 125px auto 0 auto;
+            margin: 30% auto 0 auto;
             font-weight: bold;
 
             i {
                 color: #fff;
+                margin-left: 5px;
             }
         }
     }
@@ -304,14 +323,13 @@ input[type="text"], input[type="number"], select {
             background-size: contain !important;
             background-position: 50% 50% !important;
             background-repeat: no-repeat !important;
-            cursor: pointer;
             margin-bottom: 10px;
         }
 
         .discount {
             display: block;
             position: absolute;
-            top: 15; left: 5px;
+            top: 15px; left: 15px;
             border-radius: 15px;
             height: 30px;
             line-height: 30px;

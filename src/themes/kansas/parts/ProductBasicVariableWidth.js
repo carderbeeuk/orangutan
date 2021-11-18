@@ -14,13 +14,13 @@ export default function ProductBasicVariableWidth(props) {
         <div key={props.idx} className='col-xs-6 product basic'>
             <div className='product-inner'>
                 {
-                    parseFloat(props.offer.product._source.discount_percentage) > 0 && parseFloat(props.offer.product._source.discount_percentage) < 60 ?
+                    parseFloat(props.offer.product._source.discount_percentage) > 0 && parseFloat(props.offer.product._source.discount_percentage) < 75 ?
                         <div className='discount'>
                             save {props.offer.product._source.discount_percentage}%
                         </div> :
                         null
                 }
-                <a rel="nofollow" href={props.offer.product._source.click_out_url}>
+                <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url}>
                     <div className='visit-store'>
                         <p>Visit Store <i className="fas fa-external-link-alt"></i></p>
                     </div>
