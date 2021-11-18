@@ -2,6 +2,7 @@ import React, { Fragment, Suspense, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import './scss/main.scss'
+import ReturnsPolicy from '../../themes/kansas/ReturnsPolicy'
 
 export default function Router(props) {
     const siteConfig = props.siteConfig
@@ -58,6 +59,11 @@ export default function Router(props) {
                 <Route exact path='/legal/terms-and-conditions' render={
                     (props) => <Suspense fallback={null}>
                         <TermsAndConditions {...props} siteConfig={siteConfig} />
+                    </Suspense>
+                }></Route>
+                <Route exact path='/legal/returns-policy' render={
+                    (props) => <Suspense fallback={null}>
+                        <ReturnsPolicy {...props} siteConfig={siteConfig} />
                     </Suspense>
                 }></Route>
 

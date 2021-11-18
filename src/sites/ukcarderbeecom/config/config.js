@@ -2,7 +2,7 @@ const config = {
     site: 'ukcarderbeecom',
     domain: 'uk.carderbee.com',
     theme: 'kansas',
-    copyright: 'Carderbee UK 2021',
+    copyright: '2021 Carderbee UK',
     siteName: 'Carderbee UK',
     locale: 'en-GB',
     currency: 'GBP',

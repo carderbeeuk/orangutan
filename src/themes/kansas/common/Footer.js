@@ -6,7 +6,7 @@ export default function Footer(props) {
             <div className='outer copyright'>
                 <div className='footer-content row inner'>
                     <div className='col-md-3 col-sm-12' style={{
-                        paddingTop: '15px'
+                        paddingTop: '0',
                     }}>
                         <h5 style={{
                             color: '#fff'
@@ -14,10 +14,11 @@ export default function Footer(props) {
                         <p>22 Canal Boulevard<br/>Camden, London<br/>NW1 9AQ</p>
                     </div>
                     <div className='col-md-3 col-sm-12' style={{
-                        paddingTop: '25px'
+                        paddingTop: '0',
                     }}>
                         <p style={{display: 'block'}}><Link to={'/legal/privacy-policy'}>Privacy Policy</Link></p>
                         <p style={{display: 'block'}}><Link to={'/legal/terms-and-conditions'}>Terms and Conditions</Link></p>
+                        <p style={{display: 'block'}}><Link to={'/legal/returns-policy'}>Returns Policy</Link></p>
                     </div>
                 </div>
             </div>
