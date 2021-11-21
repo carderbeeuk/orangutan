@@ -36,7 +36,8 @@ const getOffers = async (searchTerm, limit=32, market='uk') => {
 }
 
 const getProductSingle = async (productCode, market='uk') => {
-    const response = await axios.get(`/product-single/${market}/${productCode}`)
+    const response = await axios.get(`/product-single/${market}/${productCode}`).catch(err => {})
+    if(!response) return {}
 
     const typeTagStr = await typeTag.getTypeTag(productCode)
     response.data.offers.map(offer => {

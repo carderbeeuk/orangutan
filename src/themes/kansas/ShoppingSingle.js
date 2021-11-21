@@ -16,17 +16,46 @@ export default function ShoppingSingle(props) {
     const init = async () => {
         const product = await getProductSingle(props.match.params.productCode)
         setProduct(product)
-        document.title = props.siteConfig.siteName + ' | ' + product.product._source.title
+        if(!product) {
+            document.title = ''
+        } else {
+            document.title = product // 👈 null and undefined check
+                && Object.keys(product).length === 0
+                && Object.getPrototypeOf(product) === Object.prototype ?
+                    '' :
+                    props.siteConfig.siteName + ' | ' + product.product._source.title
+        }
     }
 
-    if(!product) return null
-    return(
-        <Fragment>
-            <Header {...props} />
-            <div className='outer row' style={{
-                margin: 0,
-                minHeight: 'calc(100vh - 450px)'
-            }}>
+    const renderProduct = () => {
+        if(!product) {
+            return null
+        } else if(product // 👈 null and undefined check
+            && Object.keys(product).length === 0
+            && Object.getPrototypeOf(product) === Object.prototype) {
+            return (
+                <div className='inner-centered' style={{
+                    maxWidth: '600px',
+                    paddingTop: 0,
+                }}>
+                    <img
+                        src={`/images/${props.siteConfig.site}/not_found_magnifying_glass.png`}
+                        alt={`${props.siteConfig.siteName}`}
+                        className='col-12'
+                        style={{
+                            display: 'block',
+                            margin: '0 auto'
+                        }} />
+                    <h2 style={{
+                        textAlign: 'center'
+                    }}>Product Not Found</h2>
+                    <p style={{
+                        textAlign: 'center'
+                    }}>This product doesn't seem to be available right now, feel free to try again later, or try another search.</p>
+                </div>
+            )
+        } else {
+            return (
                 <div className='inner-centered col-12'>
                     <div className='product-single row'>
                         <div className='col-lg-2 col-md-3'>
@@ -35,7 +64,7 @@ export default function ShoppingSingle(props) {
                                 margin: '-25px 0 25px 0'
                             }} />
                         </div>
-                        <div className='col-lg-9 col-md-8'>
+                        <div className='col-lg-10 col-md-8'>
                             <h3>{product.product._source.title}</h3>
                             <p>From <strong>{product.product._source.manufacturer}</strong></p>
                             <p style={{
@@ -66,6 +95,19 @@ export default function ShoppingSingle(props) {
                         </p>
                     </div>
                 </div>
+            )
+        }
+    }
+
+    return(
+        <Fragment>
+            <Header {...props} />
+            <div className='outer row' style={{
+                margin: '0 auto',
+                maxWidth: '1450px',
+                minHeight: 'calc(100vh - 450px)'
+            }}>
+                {renderProduct()}
             </div>
             <Footer {...props} />
         </Fragment>

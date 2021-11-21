@@ -40,7 +40,11 @@ export default function ProductOffers(props) {
                                         `${new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.delivery_cost)} delivery`
                                     }
                                 </td>
-                                <td style={{color: 'grey'}}>
+                                <td style={{
+                                    color: 'grey',
+                                    paddingTop: '10px',
+                                    paddingBottom: '15px'
+                                }}>
                                     {offer._source.features.length > 0 ?
                                         offer._source.features.map((feature, key) => {
                                             return(

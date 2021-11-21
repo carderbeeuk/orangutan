@@ -264,9 +264,10 @@ input[type="text"], input[type="number"], select {
             border-radius: 15px;
             height: 30px;
             width: 30px;
-            line-height: 30px;
+            line-height: 35px;
             text-align: center;
             cursor: pointer;
+            background: rgba(255, 255, 255, 0.9);
             
             i {
                 font-size: 1.3em;
@@ -336,7 +337,7 @@ input[type="text"], input[type="number"], select {
             background: rgba(80, 158, 89, 0.9);
             color: #fff;
             padding: 0 10px;
-            border: 1px solid #fff;
+            // border: 1px solid #fff;
         }
     }
 
@@ -362,6 +363,8 @@ input[type="text"], input[type="number"], select {
         display: block;
         font-size: 1.2em;
         line-height: 28px;
+        height: 56px;
+        overflow: hidden;
         color: #222;
     }
 
@@ -369,6 +372,8 @@ input[type="text"], input[type="number"], select {
         display: block;
         font-size: 0.9em;
         line-height: 25px;
+        height: 50px;
+        overflow: hidden;
         color: #222;
     }
 
@@ -404,6 +409,20 @@ input[type="text"], input[type="number"], select {
             font-weight: bold;
             font-size: 1.1em;
             padding-top: 10px;
+
+            span {
+                font-weight: bold;
+                font-size: 1.1em;
+                padding-top: 10px;
+
+                &.price-old {
+                    color: #ccc;
+                    margin-right: 5px;
+                    text-decoration: line-through;
+                    font-weight: normal;
+                    font-size: 1em;
+                }
+            }
         }
 
         .shipping {
@@ -443,7 +462,6 @@ input[type="text"], input[type="number"], select {
 
             td {
                 height: 60px;
-                line-height: 60px;
             }
 
             th, td {
@@ -468,13 +486,14 @@ input[type="text"], input[type="number"], select {
         line-height: 40px;
         padding: 0 15px;
         background: #e0e0e0;
-        color: #333
+        color: #333;
+        min-width: 115px;
     }
 
     .offer-feature {
         color: grey;
         display: inline-block;
-        margin-right: 5px;
+        margin: 5px 5px 0 0;
         border: 1px solid #e0e0e0;
         border-radius: 13px;
         height: 26px;

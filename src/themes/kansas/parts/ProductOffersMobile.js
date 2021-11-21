@@ -42,12 +42,14 @@ export default function ProductOffersMobile(props) {
                         <div className='row' style={{
                             marginTop: '-10px'
                         }}>
-                            <div className='col-12'>
+                            <div className='col-12' style={{
+                                paddingBottom: '15px'
+                            }}>
                                 {offer._source.features.length > 0 ?
                                     offer._source.features.map((feature, key) => {
                                         return(
                                             <p key={key} style={{
-                                                marginTop: '-5px'
+                                                marginTop: '5px'
                                             }} className='offer-feature'>{feature['label']}: {feature['value']}</p>
                                         )
                                     }) :
