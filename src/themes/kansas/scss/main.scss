@@ -144,10 +144,10 @@ h1, h2, h3 {
 }
 
 .filter-block {
-    margin-top: 25px;
+    margin-top: -1px;
     padding: 25px 10px;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: 1px;
 
     h6 {
         text-transform: capitalize;
@@ -388,10 +388,16 @@ input[type="text"], input[type="number"], select {
         }
 
         &.compare-link {
-            color: #0071bc;
-            padding: 10px 0 0 0;
+            color: #333;
+            display: block;
+            background: #e0e0e0;
+            height: 40px;
+            line-height: 40px !important;
+            border-radius: 20px;
+            text-align: center;
             font-size: 1.1em;
             line-height: 1.1em;
+            margin-bottom: 0;
         }
 
         &.price {
@@ -461,8 +467,8 @@ input[type="text"], input[type="number"], select {
         text-align: center;
         line-height: 40px;
         padding: 0 15px;
-        background: #0071bc;
-        color: #fff
+        background: #e0e0e0;
+        color: #333
     }
 
     .offer-feature {

@@ -25,7 +25,7 @@ export default function ShoppingSingle(props) {
             <Header {...props} />
             <div className='outer row' style={{
                 margin: 0,
-                minHeight: 'calc(100vh - 200px)'
+                minHeight: 'calc(100vh - 450px)'
             }}>
                 <div className='inner-centered col-12'>
                     <div className='product-single row'>

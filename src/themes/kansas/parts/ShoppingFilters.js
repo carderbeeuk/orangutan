@@ -140,7 +140,10 @@ export default function ShoppingFilters(props) {
         <Fragment>
             {renderClearFilters()}
             <div>
-                <div className='filter-block'>
+                <div className='filter-block' style={{
+                    borderRadius: '4px 4px 0 0',
+                    marginTop: '25px'
+                }}>
                     <h6>Sort</h6>
                     <select className='sort-select' onChange={handleSort} value={appliedFilters['sort']} defaultValue='relevance'>
                         <option value="relevance">Relevance</option>

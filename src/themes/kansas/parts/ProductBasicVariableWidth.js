@@ -21,16 +21,15 @@ export default function ProductBasicVariableWidth(props) {
                         null
                 }
                 <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url}>
-                    <div className='visit-store'>
-                        <p>Visit Store <i className="fas fa-external-link-alt"></i></p>
-                    </div>
+                    <div title={props.offer.product._source.title} className='image' style={{
+                        background: `url(${props.offer.product._source.image_large})`
+                    }}></div>
                 </a>
-                <div title={props.offer.product._source.title} className='image' style={{
-                    background: `url(${props.offer.product._source.image_large})`
-                }}></div>
                 <div className='product-text'>
-                    <h5 className='d-none d-md-block' title={props.offer.product._source.title}>{props.offer.product._source.title}</h5>
-                    <h6 className='d-md-none' title={props.offer.product._source.title}>{props.offer.product._source.title}</h6>
+                    <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url}>
+                        <h5 className='d-none d-md-block' title={props.offer.product._source.title}>{props.offer.product._source.title}</h5>
+                        <h6 className='d-md-none' title={props.offer.product._source.title}>{props.offer.product._source.title}</h6>
+                    </a>
                     <hr/>
                     <p className='price'>
                         {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(props.offer.product._source.price)}
@@ -46,7 +45,7 @@ export default function ProductBasicVariableWidth(props) {
                     <a href={`/shopping/product/${base64_encode(props.offer.product._source.product_code)}`}>
                         {props.offer.offer_count > 1 && showOfferCount ?
                             <Fragment><hr/><p className='compare-link'>Compare from {props.offer.offer_count} offers</p></Fragment> :
-                            <Fragment><hr/><p className='compare-link'>View offer details</p></Fragment>
+                            <Fragment><hr/><p className='compare-link single'>View offer details</p></Fragment>
                         }
                     </a>
                 </div>

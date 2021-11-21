@@ -24,7 +24,7 @@ export default function ShoppingSearch(props) {
             <Header {...props} />
             <div className='outer row' style={{
                 margin: 0,
-                minHeight: 'calc(100vh - 200px)'
+                minHeight: 'calc(100vh - 450px)'
             }}>
                 <div className='col-md-2 d-none d-lg-block' style={{
                     paddingRight: 0

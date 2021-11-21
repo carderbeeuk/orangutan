@@ -8,7 +8,7 @@ export default function NotFound(props) {
             <Header {...props} />
             <div className='outer' style={{
                 margin: 0,
-                minHeight: 'calc(100vh - 200px)'
+                minHeight: 'calc(100vh - 450px)'
             }}>
                 <div className='inner-centered' style={{
                     maxWidth: '600px'
