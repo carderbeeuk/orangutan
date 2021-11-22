@@ -1,4 +1,5 @@
 import CategorySection from './HomeCategories/CategorySection'
+import { useEffect, useState } from 'react'
 
 const categories = [
     {
@@ -29,9 +30,61 @@ const categories = [
 ]
 
 export default function HomeCategories(props) {
+    const [bookmarkedProducts, setBookmarkedProducts] = useState([])
+
+    useEffect(() => {
+        initBookmarkedProducts()
+    }, [props])
+
+    const initBookmarkedProducts = () => {
+        var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
+        setBookmarkedProducts(bookmarkedProducts)
+    }
+
+    const setBookmarkedProductsCookie = (value, days) => {
+        const d = new Date()
+        d.setTime(d.getTime() + (days*24*60*60*1000))
+        let expires = "expires="+ d.toUTCString()
+        document.cookie = "bookmarkedProducts=" + value + ";" + expires + ";path=/"
+    }
+
+    const getBookmarkedProductsCookie = () => {
+        let name = "bookmarkedProducts="
+        let decodedCookie = decodeURIComponent(document.cookie)
+        let ca = decodedCookie.split(';')
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length)
+            }
+        }
+        return null
+    }
+
+    const bookmarkProduct = (productCode) => {
+        var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
+        if(bookmarkedProducts.includes(productCode)) {
+            const i = bookmarkedProducts.indexOf(productCode)
+            if(i > -1) bookmarkedProducts.splice(i, 1)
+        } else {
+            bookmarkedProducts.push(productCode)
+        }
+
+        setBookmarkedProducts(bookmarkedProducts)
+        setBookmarkedProductsCookie(
+            JSON.stringify(bookmarkedProducts),
+            1
+        )
+    }
+
     return(
         categories.map((category, idx) => {
-            return <CategorySection {...props} category={category} idx={idx} key={idx} />
+            return <CategorySection {...props} category={category} idx={idx} key={idx}
+                bookmarkProduct={bookmarkProduct}
+                bookmarkedProducts={bookmarkedProducts} />
         })
     )
 }
