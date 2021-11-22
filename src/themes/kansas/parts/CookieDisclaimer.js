@@ -46,7 +46,7 @@ export default function CookieDisclaimer() {
     return(
         <div className='cookie-disclaimer'>
             <div className='row'>
-                <p className='col-md-9 col-sm-12'>Your privacy is important to us, that's why we only use anonymous cookies to enhance site navigation and analyse site usage. For more information about how we use your data please visit our <Link to='/legal/privacy-policy'>Privacy Policy</Link>.</p>
+                <p className='col-md-9 col-sm-12'>Your privacy is important to us, that's why we only use anonymous cookies to enhance site navigation, enhance your shopping experience, and analyse website usage. For more information about how we use your data, or to make changes to your preferences, please visit our <Link to='/legal/privacy-policy'>Privacy Policy</Link>.</p>
                 <p className='col-md-3 col-sm-12' style={{
                     textAlign: 'right'
                 }}><button onClick={acceptDisclaimer}>That's fine, thanks</button><i onClick={rejectDisclaimer} className="fas fa-times"></i></p>

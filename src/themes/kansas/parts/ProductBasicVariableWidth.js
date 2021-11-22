@@ -30,13 +30,13 @@ export default function ProductBasicVariableWidth(props) {
         var statement = null
         switch (randNum) {
             case 1:
-                statement = `save ${product._source.discount_percentage}%`
+                statement = `-${product._source.discount_percentage}%`
                 break;
             case 2:
-                statement = 'sale'
+                statement = 'on sale'
                 break;
             case 3:
-                statement = `discount`
+                statement = `discounted`
             default:
                 break;
         }

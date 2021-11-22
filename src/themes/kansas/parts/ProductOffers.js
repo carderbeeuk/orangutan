@@ -14,11 +14,11 @@ export default function ProductOffers(props) {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Seller</th>
-                        <th>Delivery Cost</th>
-                        <th>Attributes</th>
+                        <th>Merchant</th>
+                        <th>Features</th>
+                        <th>Delivery</th>
                         <th>Price</th>
-                        <th>In Stock</th>
+                        <th>Availability</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,19 +26,15 @@ export default function ProductOffers(props) {
                     {product.offers.map((offer, key) => {
                         return(
                             <tr key={key}>
-                                <td>
+                                <td style={{
+                                    padding: '5px'
+                                }}>
                                     <img title={offer._source.title} style={{
                                         height: '60px'
                                     }} src={offer._source.image_small} alt={offer._source.title} />
                                 </td>
                                 <td>
                                     <a rel="nofollow" href={offer._source.click_out_url}>{offer._source.merchant}</a>
-                                </td>
-                                <td style={{color: 'grey'}}>
-                                    {parseFloat(offer._source.delivery_cost) === 0 ?
-                                        <span className='green'>Free delivery {offer._source.delivery_time ? `(${offer._source.delivery_time})` : null}</span> :
-                                        `${new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.delivery_cost)} delivery`
-                                    }
                                 </td>
                                 <td style={{
                                     color: 'grey',
@@ -52,6 +48,12 @@ export default function ProductOffers(props) {
                                             )
                                         }) :
                                         null
+                                    }
+                                </td>
+                                <td style={{color: 'grey'}}>
+                                    {parseFloat(offer._source.delivery_cost) === 0 ?
+                                        <span className='green'>Free delivery {offer._source.delivery_time ? `(${offer._source.delivery_time})` : null}</span> :
+                                        `${new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.delivery_cost)} delivery`
                                     }
                                 </td>
                                 <td className='price'>
@@ -68,12 +70,11 @@ export default function ProductOffers(props) {
                                 }
                                 </td>
                                 <td>
-                                    {offer._source.in_stock ?
-                                        <i className="fas fa-check-circle green"></i> :
-                                        <i className="fas fa-times-circle red"></i>
-                                    }
+                                    {props.getAvailability(offer)}
                                 </td>
-                                <td>
+                                <td style={{
+                                    textAlign: 'right'
+                                }}>
                                     <a rel="nofollow" className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
                                 </td>
                             </tr>

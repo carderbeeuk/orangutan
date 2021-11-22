@@ -182,7 +182,7 @@ h1, h2, h3 {
     margin-top: 25px;
 
     span, i {
-        color: #0071bc;
+        color: #2F466C;
         cursor: pointer;
     }
 }
@@ -197,7 +197,7 @@ input.price-filter {
 
 .price-check {
     font-size: 1.1em;
-    color: #0071bc;
+    color: #2F466C;
 }
 
 input[type="text"], input[type="number"], select {
@@ -296,7 +296,7 @@ input[type="text"], input[type="number"], select {
             text-align: center;
             line-height: 50px;
             padding: 0 15px;
-            background: #0071bcde;
+            background: #2F466Cde;
             color: #fff;
             width: 60%;
             margin: 30% auto 0 auto;
@@ -487,26 +487,6 @@ input[type="text"], input[type="number"], select {
         }
     }
 
-    .green {
-        color: #509E59;
-    }
-
-    .red {
-        color: #FF665A;
-    }
-
-    .visit-store-link {
-        display: block;
-        border-radius: 20px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        padding: 0 15px;
-        background: #e0e0e0;
-        color: #333;
-        min-width: 115px;
-    }
-
     .offer-feature {
         color: grey;
         display: inline-block;
@@ -517,6 +497,41 @@ input[type="text"], input[type="number"], select {
         line-height: 26px;
         padding: 0 10px;
         font-size: 0.9em;
+    }
+}
+
+.green {
+    color: #509E59;
+}
+
+.red {
+    color: #FF665A;
+}
+
+.yellow {
+    color: #FEA443;
+}
+
+.visit-store-link {
+    display: inline-block;
+    border-radius: 20px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    padding: 0 15px;
+    background: #e0e0e0;
+    color: #333;
+    min-width: 115px;
+    width: auto;
+
+    &:hover {
+        text-decoration: none;
+        color: #333;
+    }
+
+    &.single {
+        background: #2F466C;
+        color: #fff;
     }
 }
 
@@ -582,7 +597,7 @@ footer {
 
     button {
         border: none;
-        background: #0071bc;
+        background: #2F466C;
         color: #fff;
         border-radius: 15px;
         height: 30px;

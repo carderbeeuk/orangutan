@@ -43,6 +43,9 @@ export default function ProductOffersMobile(props) {
                                 <p style={{
                                     margin: 0
                                 }}>{offer._source.merchant}</p>
+                                <p>
+                                    {props.getAvailability(offer)}
+                                </p>
                             </div>
                             <div className='col-5'>
                                 <a rel="nofollow" className='visit-store-link' href={offer._source.click_out_url}>Visit store</a>
