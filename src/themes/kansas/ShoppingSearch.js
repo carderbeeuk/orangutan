@@ -6,13 +6,17 @@ import ProductBasicVariableWidth from './parts/ProductBasicVariableWidth'
 import ShoppingFilters from './parts/ShoppingFilters'
 import ShoppingFiltersMobile from './parts/ShoppingFiltersMobile'
 import OfferDisclaimer from './parts/OfferDisclaimer'
+import BookmarkedProducts from './parts/BookmarkedProducts'
+import { decode as base64_decode } from 'js-base64'
 
 export default function ShoppingSearch(props) {
     const [offers, setOffers] = useState()
+    const [bookmarkedProducts, setBookmarkedProducts] = useState([])
 
     useEffect(() => {
         document.title = props.siteConfig.siteName + ' | ' + props.match.params.searchTerm
         initOffers()
+        initBookmarkedProducts()
     }, [props])
 
     const initOffers = async () => {
@@ -26,6 +30,63 @@ export default function ShoppingSearch(props) {
                 <ShoppingFiltersMobile {...props} offers={offers} searchTerm={props.match.params.searchTerm} />
             </div> :
             null
+    }
+
+    const initBookmarkedProducts = () => {
+        var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
+        setBookmarkedProducts(bookmarkedProducts)
+    }
+
+    const setBookmarkedProductsCookie = (value, days) => {
+        const d = new Date()
+        d.setTime(d.getTime() + (days*24*60*60*1000))
+        let expires = "expires="+ d.toUTCString()
+        document.cookie = "bookmarkedProducts=" + value + ";" + expires + ";path=/"
+    }
+
+    const getBookmarkedProductsCookie = () => {
+        let name = "bookmarkedProducts="
+        let decodedCookie = decodeURIComponent(document.cookie)
+        let ca = decodedCookie.split(';')
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length)
+            }
+        }
+        return null
+    }
+
+    const bookmarkProduct = (productCode) => {
+        var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
+        if(bookmarkedProducts.includes(productCode)) {
+            const i = bookmarkedProducts.indexOf(productCode)
+            if(i > -1) bookmarkedProducts.splice(i, 1)
+        } else {
+            bookmarkedProducts.push(productCode)
+        }
+
+        setBookmarkedProducts(bookmarkedProducts)
+        setBookmarkedProductsCookie(
+            JSON.stringify(bookmarkedProducts),
+            1
+        )
+    }
+
+    const removeBookmarkedProduct = (productCode) => {
+        var productCode = base64_decode(productCode)
+        var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
+        const i = bookmarkedProducts.indexOf(productCode)
+        if(i > -1) bookmarkedProducts.splice(i, 1)
+
+        setBookmarkedProducts(bookmarkedProducts)
+        setBookmarkedProductsCookie(
+            JSON.stringify(bookmarkedProducts),
+            1
+        )
     }
 
     const renderProducts = () => {
@@ -75,7 +136,13 @@ export default function ShoppingSearch(props) {
                         <div className='clearfixx'></div>
                         {offers.map((offer, idx) => {
                             return(
-                                <ProductBasicVariableWidth {...props} offer={offer} idx={idx} key={idx} />
+                                <ProductBasicVariableWidth
+                                    {...props}
+                                    offer={offer}
+                                    idx={idx}
+                                    key={idx}
+                                    bookmarkProduct={bookmarkProduct}
+                                    bookmarkedProducts={bookmarkedProducts} />
                             )
                         })}
                     </div>
@@ -83,6 +150,8 @@ export default function ShoppingSearch(props) {
             )
         }
     }
+
+    
 
     if(!offers) return null
     return(
@@ -92,6 +161,10 @@ export default function ShoppingSearch(props) {
                 margin: 0,
                 minHeight: 'calc(100vh - 450px)'
             }}>
+                <BookmarkedProducts
+                    {...props}
+                    bookmarkedProducts={bookmarkedProducts}
+                    removeBookmarkedProduct={removeBookmarkedProduct} />
                 {renderProducts()}
                 <div className='outer inner-centered'>
                     <OfferDisclaimer centered={true} />

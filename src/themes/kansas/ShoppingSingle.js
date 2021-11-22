@@ -124,7 +124,7 @@ export default function ShoppingSingle(props) {
                                 {getAvailability(product.product)}
                             </p>
                             <p>
-                                <a rel="nofollow" className='visit-store-link single' href={product.product._source.click_out_url}>Buy now from {product.product._source.merchant}</a>
+                                <a rel="nofollow" className='visit-store-link single' href={product.product._source.click_out_url}>Buy now at {product.product._source.merchant}</a>
                             </p>
                         </div>
                     </div>

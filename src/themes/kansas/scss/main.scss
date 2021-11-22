@@ -177,12 +177,21 @@ h1, h2, h3 {
 }
 
 .clear-filters {
-    display: block;
-    padding: 25px 0 0 0;
+    display: inline-block;
+    padding: 0 15px;
     margin-top: 25px;
+    background: #e0e0e0;
+    color: #333;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+
+    i {
+        margin-right: 5px;
+    }
 
     span, i {
-        color: #2F466C;
+        color: #333;
         cursor: pointer;
     }
 }
@@ -554,6 +563,91 @@ p.price {
 .offer-disclaimer {
     margin-top: 40px;
     color: grey;
+}
+
+.bookmarked-products {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+
+    h6 {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    a.option, span.clear-all {
+        display: inline-block;
+        padding: 0 15px;
+        margin-top: 25px;
+        background: #e0e0e0;
+        color: #333;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        margin-left: 10px;
+
+        i {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    .bookmarked-products-inner {
+        padding: 5px 0;
+        height: 110px;
+        
+        &.scrollable {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .bookmarked-product {
+            position: relative;
+            display: inline-block;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 5px;
+            margin-right: 10px;
+            height: 100px;
+            width: 85px;
+            text-align: center;
+            vertical-align: top;
+            
+            .image {
+                display: block;
+                height: 100%;
+                width: 100%;
+                background-size: contain !important;
+                background-position: 50% 50% !important;
+                background-repeat: no-repeat !important;
+            }
+    
+            &.option {
+                background-color: #f0f0f0;
+                cursor: pointer;
+    
+                &:hover > i {
+                    color: #333;
+                }
+            }
+    
+            i {
+                font-size: -.9em;
+                color: #ccc;
+                position: absolute;
+                top: 5px; right: 5px;
+                height: 16px;
+                width: 16px;
+                line-height: 16px;
+                background: #fff;
+                border-radius: 8px;
+            }
+        }
+    }
 }
 
 footer {

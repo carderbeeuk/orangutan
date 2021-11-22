@@ -177,6 +177,7 @@ export default function ShoppingFilters(props) {
                     )
                 })}
             </div>
+            {renderClearFilters()}
         </Fragment>
     )
 }
