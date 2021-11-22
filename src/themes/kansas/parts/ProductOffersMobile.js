@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 
 export default function ProductOffersMobile(props) {
     const [product, setProduct] = useState()
@@ -18,10 +18,19 @@ export default function ProductOffersMobile(props) {
                             padding: '25px 0'
                         }}>
                             <div className='col-7'>
-                                <p style={{
-                                    fontWeight: 'bold',
-                                    fontSize: '1.3em'
-                                }}>{new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)}</p>
+                                <p className='price'>
+                                    {offer._source.price_without_rebate > offer._source.price ?
+                                        <Fragment>
+                                            <span className='price-old'>
+                                                {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price_without_rebate)}
+                                            </span>
+                                            <span>
+                                                {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)}
+                                            </span>
+                                        </Fragment> :
+                                        new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)
+                                    }
+                                </p>
                                 <p style={{
                                     color: 'grey',
                                     margin: '-10px 0 0 0'

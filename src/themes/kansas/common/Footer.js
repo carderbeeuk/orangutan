@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { isMobile } from 'react-device-detect'
 
 export default function Footer(props) {
     return(
@@ -16,7 +17,12 @@ export default function Footer(props) {
                     <div className='col-md-3 col-sm-12' style={{
                         paddingTop: '0',
                     }}>
-                        <p style={{display: 'block'}}><Link to={'/legal/privacy-policy'}>Privacy Policy</Link></p>
+                        <p style={isMobile ? {
+                            display: 'block',
+                            marginTop: '25px'
+                        } : {
+                            display: 'block'
+                        }}><Link to={'/legal/privacy-policy'}>Privacy Policy</Link></p>
                         <p style={{display: 'block'}}><Link to={'/legal/terms-and-conditions'}>Terms and Conditions</Link></p>
                         <p style={{display: 'block'}}><Link to={'/legal/returns-policy'}>Returns Policy</Link></p>
                     </div>

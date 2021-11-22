@@ -4,6 +4,7 @@ import Footer from './common/Footer'
 import { getProductSingle } from '../../modules/sherbert-lemon/sherbert-lemon'
 import ProductOffers from './parts/ProductOffers'
 import ProductOffersMobile from './parts/ProductOffersMobile'
+import OfferDisclaimer from './parts/OfferDisclaimer'
 
 export default function ShoppingSingle(props) {
     const [product, setProduct] = useState()
@@ -89,11 +90,7 @@ export default function ShoppingSingle(props) {
                     <div className='d-md-none d-lg-none d-xl-none'>
                         <ProductOffersMobile {...props} product={product} />
                     </div>
-                    <div>
-                        <p className='offer-disclaimer'>
-                            The product information displayed on this site is updated daily. As such the stock availability and prices of some items might change in this time. Please make sure to double check prices and availability on the sellers' websites. This site shows affiliate links to products which means that we may receive a commission for any sales made.
-                        </p>
-                    </div>
+                    <OfferDisclaimer />
                 </div>
             )
         }

@@ -5,6 +5,7 @@ import Footer from './common/Footer'
 import ProductBasicVariableWidth from './parts/ProductBasicVariableWidth'
 import ShoppingFilters from './parts/ShoppingFilters'
 import ShoppingFiltersMobile from './parts/ShoppingFiltersMobile'
+import OfferDisclaimer from './parts/OfferDisclaimer'
 
 export default function ShoppingSearch(props) {
     const [offers, setOffers] = useState()
@@ -93,11 +94,7 @@ export default function ShoppingSearch(props) {
             }}>
                 {renderProducts()}
                 <div className='outer inner-centered'>
-                    <p className='offer-disclaimer' style={{
-                        margin: '0 auto'
-                    }}>
-                        The product information displayed on this site is updated daily. As such the stock availability and prices of some items might change in this time. Please make sure to double check prices and availability on the sellers' websites. This site shows affiliate links to products which means that we may receive a commission for any sales made.
-                    </p>
+                    <OfferDisclaimer centered={true} />
                 </div>
             </div>
             <Footer {...props} />

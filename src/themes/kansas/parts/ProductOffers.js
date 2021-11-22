@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 
 export default function ProductOffers(props) {
     const [product, setProduct] = useState()
@@ -54,8 +54,18 @@ export default function ProductOffers(props) {
                                         null
                                     }
                                 </td>
-                                <td style={{fontWeight: 'bold'}}>
-                                    {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)}
+                                <td className='price'>
+                                {offer._source.price_without_rebate > offer._source.price ?
+                                    <Fragment>
+                                        <span className='price-old'>
+                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price_without_rebate)}
+                                        </span>
+                                        <span>
+                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)}
+                                        </span>
+                                    </Fragment> :
+                                    new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(offer._source.price)
+                                }
                                 </td>
                                 <td>
                                     {offer._source.in_stock ?

@@ -427,8 +427,10 @@ input[type="text"], input[type="number"], select {
 
         .shipping {
             color: #666;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
             display: block;
+            height: 0.5em;
+            line-height: 0.5em;
 
             &.free {
                 color: #509E59;
@@ -457,11 +459,26 @@ input[type="text"], input[type="number"], select {
             th {
                 color: #666;
                 height: 45px;
-                line-height: 45px;
             }
 
             td {
                 height: 60px;
+
+                &.price {
+                    font-weight: bold;
+        
+                    span {
+                        font-weight: bold;
+        
+                        &.price-old {
+                            color: #ccc;
+                            margin-right: 5px;
+                            text-decoration: line-through;
+                            font-weight: normal;
+                            font-size: 0.9em;
+                        }
+                    }
+                }
             }
 
             th, td {
@@ -500,6 +517,22 @@ input[type="text"], input[type="number"], select {
         line-height: 26px;
         padding: 0 10px;
         font-size: 0.9em;
+    }
+}
+
+p.price {
+    font-weight: bold;
+
+    span {
+        font-weight: bold;
+
+        &.price-old {
+            color: #ccc;
+            margin-right: 5px;
+            text-decoration: line-through;
+            font-weight: normal;
+            font-size: 0.9em;
+        }
     }
 }
 
