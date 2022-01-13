@@ -2,7 +2,7 @@ import axios from 'axios'
 
 switch (process.env.REACT_APP_ENVIRONMENT) {
     case 'production':
-        axios.defaults.baseURL = 'https://sherbert-lemon.carderbee.com'
+        axios.defaults.baseURL = 'https://fw.carderbee.com'
         break
     case 'development':
         axios.defaults.baseURL = 'http://localhost:8000'
@@ -11,7 +11,7 @@ switch (process.env.REACT_APP_ENVIRONMENT) {
         axios.defaults.baseURL = 'http://localhost:8000'
         break
     default:
-        axios.defaults.baseURL = 'https://sherbert-lemon.carderbee.com'
+        axios.defaults.baseURL = 'https://fw.carderbee.com'
         break
 }
 
