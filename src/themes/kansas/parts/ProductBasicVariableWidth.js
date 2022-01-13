@@ -1,5 +1,4 @@
 import { Fragment, useState, useEffect } from "react";
-import { encode as base64_encode } from 'js-base64'
 
 export default function ProductBasicVariableWidth(props) {
     const [showOfferCount, setShowOfferCount] = useState(true)
@@ -40,8 +39,8 @@ export default function ProductBasicVariableWidth(props) {
                         </div> :
                         null
                 }
-                <div className='bookmark-product' title='bookmark this product' onClick={() => props.bookmarkProduct(props.offer.product._source.product_code)}>
-                    {props.bookmarkedProducts.includes(props.offer.product._source.product_code) ?
+                <div className='bookmark-product' title='bookmark this product' onClick={() => props.bookmarkProduct(props.offer.product._source.product_uuid)}>
+                    {props.bookmarkedProducts.includes(props.offer.product._source.product_uuid) ?
                         <i className="fas fa-bookmark"></i> :
                         <i className="far fa-bookmark"></i>
                     }
@@ -73,12 +72,12 @@ export default function ProductBasicVariableWidth(props) {
                     <p className='merchant'>{props.offer.product._source.merchant}</p>
                     <p>
                     {
-                        parseFloat(props.offer.product._source.delivery_cost) === 0 ?
+                        parseFloat(props.offer.product._source.delivery_cost) === 0 || !props.offer.product._source.delivery_cost ?
                             <span title={props.offer.product._source.delivery_time ? props.offer.product._source.delivery_time : null} className='shipping free'><i className="fas fa-truck"></i> Free delivery</span> :
                             <span title={props.offer.product._source.delivery_time ? props.offer.product._source.delivery_time : null} className='shipping'>{new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(props.offer.product._source.delivery_cost)} delivery</span>
                     }
                     </p>
-                    <a href={`/shopping/product/${base64_encode(props.offer.product._source.product_code)}`}>
+                    <a href={`/shopping/product/${props.offer.product._source.product_uuid}`}>
                         {props.offer.offer_count > 1 && showOfferCount ?
                             <Fragment><hr/><p className='compare-link'>Compare from {props.offer.offer_count} offers</p></Fragment> :
                             <Fragment><hr/><p className='compare-link single'>View offer details</p></Fragment>

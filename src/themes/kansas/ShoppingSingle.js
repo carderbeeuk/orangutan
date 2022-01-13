@@ -15,22 +15,22 @@ export default function ShoppingSingle(props) {
     }, [])
 
     const init = async () => {
-        const product = await getProductSingle(props.match.params.productCode)
+        const product = await getProductSingle(props.match.params.productUUID)
         setProduct(product)
         if(!product) {
             document.title = ''
         } else {
-            document.title = product // 👈 null and undefined check
+            document.title = product
                 && Object.keys(product).length === 0
                 && Object.getPrototypeOf(product) === Object.prototype ?
                     '' :
-                    props.siteConfig.siteName + ' | ' + product.product._source.title
+                    props.siteConfig.siteName + ' | ' + product.product.title
         }
     }
 
     const getAvailability = (offer) => {
         let availability
-        switch (offer._source.availability) {
+        switch (offer.availability.toLowerCase()) {
             case 'in_stock':
                 availability = <i className="fas fa-check-circle green"> In stock</i>
                 break
@@ -85,46 +85,46 @@ export default function ShoppingSingle(props) {
                 <div className='inner-centered col-12'>
                     <div className='product-single row'>
                         <div className='col-lg-2 col-md-3'>
-                            <img src={product.product._source.image_large} alt={product.product._source.title} style={{
+                            <img src={product.product.image_large} alt={product.product.title} style={{
                                 maxWidth: '100%',
                                 margin: '-25px 0 25px 0'
                             }} />
                         </div>
                         <div className='col-lg-10 col-md-8'>
-                            <h3>{product.product._source.title}</h3>
-                            <p>From <strong>{product.product._source.manufacturer}</strong></p>
+                            <h3>{product.product.title}</h3>
+                            <p>From <strong>{product.product.manufacturer}</strong></p>
                             <p style={{
                                 color: 'grey'
-                            }}>{product.product._source.description.length > 400 ?
+                            }}>{product.product.description.length > 400 ?
                                 moreShown ?
-                                    <span>{product.product._source.description} <span style={{
+                                    <span>{product.product.description} <span style={{
                                         color: '#0071bc',
                                         cursor: 'pointer'
                                     }} onClick={() => setMoreShown(!moreShown)}>Less</span></span> :
-                                    <span>{product.product._source.description.substring(0, 400)}... <span style={{
+                                    <span>{product.product.description.substring(0, 400)}... <span style={{
                                         color: '#0071bc',
                                         cursor: 'pointer'
                                     }} onClick={() => setMoreShown(!moreShown)}>More</span></span> :
-                                product.product._source.description}
+                                product.product.description}
                             </p>
                             <p className='price'>
-                                {product.product._source.price_without_rebate > product.product._source.price ?
+                                {product.product.price_without_rebate > product.product.price ?
                                     <Fragment>
                                         <span className='price-old'>
-                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product._source.price_without_rebate)}
+                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product.price_without_rebate)}
                                         </span>
                                         <span>
-                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product._source.price)}
+                                            {new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product.price)}
                                         </span>
                                     </Fragment> :
-                                    new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product._source.price)
+                                    new Intl.NumberFormat(props.siteConfig.locale, { style: 'currency', currency: props.siteConfig.currency }).format(product.product.price)
                                 }
                             </p>
                             <p>
                                 {getAvailability(product.product)}
                             </p>
                             <p>
-                                <a rel="nofollow" className='visit-store-link single' href={product.product._source.click_out_url}>Buy now at {product.product._source.merchant}</a>
+                                <a rel="nofollow" className='visit-store-link single' href={product.product.click_out_url}>Buy now at {product.product.merchant}</a>
                             </p>
                         </div>
                     </div>

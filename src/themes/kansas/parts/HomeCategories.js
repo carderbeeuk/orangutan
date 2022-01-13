@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const categories = [
     {
-        key: 'Clothing',
+        key: 'Clothing & Accessories',
         title: 'Clothing & Accessories',
         description: 'Shop clothing, shoes, and accessories for every occasion',
     },
@@ -14,18 +14,13 @@ const categories = [
     },
     {
         key: 'Electronics',
-        title: 'Electronics',
-        description: 'Discover our most popular electronics offers',
+        title: 'Electronics & Gaming',
+        description: 'Discover our most popular electronics and gaming offers',
     },
     {
         key: 'Sporting Goods',
         title: 'Sports Equipment & Outdoor Gear',
         description: 'Explore our range of top-branded offers in Fitness, Camping, Hiking and much more',
-    },
-    {
-        key: 'Baby & Toddler',
-        title: 'Babies & Kids',
-        description: 'Shop for children\'s products from our wide range of nursery products, toys, gifts and more'
     },
 ]
 
@@ -64,13 +59,13 @@ export default function HomeCategories(props) {
         return null
     }
 
-    const bookmarkProduct = (productCode) => {
+    const bookmarkProduct = (productUUID) => {
         var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
-        if(bookmarkedProducts.includes(productCode)) {
-            const i = bookmarkedProducts.indexOf(productCode)
+        if(bookmarkedProducts.includes(productUUID)) {
+            const i = bookmarkedProducts.indexOf(productUUID)
             if(i > -1) bookmarkedProducts.splice(i, 1)
         } else {
-            bookmarkedProducts.push(productCode)
+            bookmarkedProducts.push(productUUID)
         }
 
         setBookmarkedProducts(bookmarkedProducts)

@@ -5,10 +5,10 @@ switch (process.env.REACT_APP_ENVIRONMENT) {
         axios.defaults.baseURL = 'https://sherbert-lemon.carderbee.com'
         break
     case 'development':
-        axios.defaults.baseURL = 'http://localhost:5000'
+        axios.defaults.baseURL = 'http://localhost:8000'
         break
     case 'local':
-        axios.defaults.baseURL = 'http://localhost:5000'
+        axios.defaults.baseURL = 'http://localhost:8000'
         break
     default:
         axios.defaults.baseURL = 'https://sherbert-lemon.carderbee.com'

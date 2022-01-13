@@ -1,6 +1,5 @@
 import BookmarkedProduct from './BookmarkedProducts/BookmarkedProduct'
-import { Fragment, useState, useEffect } from 'react'
-import { encode as base64_encode } from 'js-base64'
+import { Fragment } from 'react'
 import { isMobile } from 'react-device-detect'
 
 export default function BookmarkedProducts(props) {
@@ -17,10 +16,10 @@ export default function BookmarkedProducts(props) {
                     'bookmarked-products-inner scrollable' :
                     'bookmarked-products-inner'
                 }>
-                    {props.bookmarkedProducts.map((rawProductCode, key) => {
-                        const productCode = base64_encode(rawProductCode)
+                    {props.bookmarkedProducts.map((rawproductUUID, key) => {
+                        const productUUID = rawproductUUID
                         return(
-                            <BookmarkedProduct {...props} productCode={productCode} removeBookmarkedProduct={props.removeBookmarkedProduct} />
+                            <BookmarkedProduct {...props} productUUID={productUUID} removeBookmarkedProduct={props.removeBookmarkedProduct} />
                         )
                     })}
                 </div>

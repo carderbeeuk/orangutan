@@ -9,7 +9,7 @@ export default function BookmarkedProduct(props) {
     }, [])
 
     const initProduct = async () => {
-        const product = await getProductSingle(props.productCode)
+        const product = await getProductSingle(props.productUUID)
         setProduct(product)
     }
 
@@ -18,10 +18,10 @@ export default function BookmarkedProduct(props) {
         <div className='bookmarked-product'>
             <i style={{
                 cursor: 'pointer'
-            }} className='fas fa-times' onClick={() => props.removeBookmarkedProduct(props.productCode)}></i>
-            <a href={`/shopping/product/${props.productCode}`}>
-                <div title={product.product._source.title} className='image' style={{
-                    background: `url(${product.product._source.image_large})`
+            }} className='fas fa-times' onClick={() => props.removeBookmarkedProduct(props.productUUID)}></i>
+            <a href={`/shopping/product/${props.productUUID}`}>
+                <div title={product.product.title} className='image' style={{
+                    background: `url(${product.product.image_large})`
                 }}></div>
             </a>
         </div>

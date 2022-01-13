@@ -7,7 +7,6 @@ import ShoppingFilters from './parts/ShoppingFilters'
 import ShoppingFiltersMobile from './parts/ShoppingFiltersMobile'
 import OfferDisclaimer from './parts/OfferDisclaimer'
 import BookmarkedProducts from './parts/BookmarkedProducts'
-import { decode as base64_decode } from 'js-base64'
 
 export default function ShoppingSearch(props) {
     const [offers, setOffers] = useState()
@@ -21,6 +20,11 @@ export default function ShoppingSearch(props) {
 
     const initOffers = async () => {
         const offers = await getOffers(props.match.params.searchTerm)
+        offers.map(offer => {
+            if(offer.product._source.price_without_rebate > offer.product._source.price && !offer.product._source.discount_percentage) {
+                offer.product._source.discount_percentage = Math.round(100 - ((offer.product._source.price / offer.product._source.price_without_rebate) * 100))
+            }
+        })
         setOffers(offers)
     }
 
@@ -60,13 +64,13 @@ export default function ShoppingSearch(props) {
         return null
     }
 
-    const bookmarkProduct = (productCode) => {
+    const bookmarkProduct = (productUUID) => {
         var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
-        if(bookmarkedProducts.includes(productCode)) {
-            const i = bookmarkedProducts.indexOf(productCode)
+        if(bookmarkedProducts.includes(productUUID)) {
+            const i = bookmarkedProducts.indexOf(productUUID)
             if(i > -1) bookmarkedProducts.splice(i, 1)
         } else {
-            bookmarkedProducts.push(productCode)
+            bookmarkedProducts.push(productUUID)
         }
 
         setBookmarkedProducts(bookmarkedProducts)
@@ -76,10 +80,10 @@ export default function ShoppingSearch(props) {
         )
     }
 
-    const removeBookmarkedProduct = (productCode) => {
-        var productCode = base64_decode(productCode)
+    const removeBookmarkedProduct = (productUUID) => {
+        var productUUID = productUUID
         var bookmarkedProducts = JSON.parse(getBookmarkedProductsCookie()) || []
-        const i = bookmarkedProducts.indexOf(productCode)
+        const i = bookmarkedProducts.indexOf(productUUID)
         if(i > -1) bookmarkedProducts.splice(i, 1)
 
         setBookmarkedProducts(bookmarkedProducts)

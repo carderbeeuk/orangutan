@@ -39,7 +39,7 @@ export default function Router(props) {
                         <ShoppingSearch {...props} siteConfig={siteConfig} />
                     </Suspense>
                 }></Route>
-                <Route exact path='/shopping/product/:productCode' render={
+                <Route exact path='/shopping/product/:productUUID' render={
                     (props) => <Suspense fallback={null}>
                         <ShoppingSingle {...props} siteConfig={siteConfig} />
                     </Suspense>

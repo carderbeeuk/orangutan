@@ -26,7 +26,7 @@ export default function ShoppingFilters(props) {
                 if(!brands.includes(offer._source.manufacturer) && offer._source.manufacturer) {
                     brands.push(offer._source.manufacturer);
                 }
-                const categoryArr = offer._source.google_category_name.split(' > ')
+                const categoryArr = offer._source.google_category.split(' > ')
                 const category = categoryArr.slice(-1)[0]
                 if(!categories.includes(category) && category) {
                     categories.push(category)

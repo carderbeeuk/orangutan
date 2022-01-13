@@ -9,7 +9,7 @@ const clickOutBaseUrl = process.env.REACT_APP_ENVIRONMENT === 'local' ? 'http://
 const device = isMobile ? 'mobile' : 'desktop'
 const trackId = queryString.parse(window.location.search).track_id || localStorage.getItem('trackId')
 
-const getOffers = async (searchTerm, limit=32, market='uk') => {
+const getOffers = async (searchTerm, limit=32) => {
     const queryParams = queryString.parse(window.location.search)
     const sort = queryParams['sort'] || 'relevance'
     const min_price = queryParams['min_price'] || null
@@ -18,7 +18,7 @@ const getOffers = async (searchTerm, limit=32, market='uk') => {
     const category = queryParams['category'] || null
     const delivery = queryParams['delivery'] || null
 
-    const response = await axios.get(`/product-search/${market}/${searchTerm}?limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
+    const response = await axios.get(`/api/product/search/${searchTerm}?format=json&limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
 
     const typeTagStr = await typeTag.getTypeTag(searchTerm)
     response.data.map(offer => {
@@ -35,20 +35,20 @@ const getOffers = async (searchTerm, limit=32, market='uk') => {
     return response.data
 }
 
-const getProductSingle = async (productCode, market='uk') => {
-    const response = await axios.get(`/product-single/${market}/${productCode}`).catch(err => {})
+const getProductSingle = async (productUUID) => {
+    const response = await axios.get(`/api/product/single/${productUUID}`).catch(err => {})
     if(!response) return {}
 
-    const typeTagStr = await typeTag.getTypeTag(productCode)
+    const typeTagStr = await typeTag.getTypeTag(productUUID)
     response.data.offers.map(offer => {
         const decodedTypeTagStr = base64_decode(typeTagStr)
-        const encodedTypeTagStr = base64_encode(`${decodedTypeTagStr}_${offer._source.merchant}`)
-        const offerUrl = `${offer._source.click_out_url}&addedParams=true&custom1=${encodedTypeTagStr}`
+        const encodedTypeTagStr = base64_encode(`${decodedTypeTagStr}_${offer.merchant}`)
+        const offerUrl = `${offer.click_out_url}&addedParams=true&custom1=${encodedTypeTagStr}`
         var extraParams = JSON.stringify({
-            'advertiser': offer._source.merchant,
+            'advertiser': offer.merchant,
         })
-        var clickOutUrl = `${clickOutBaseUrl}?keyword=${productCode}&click_out_url=${base64_encode(offerUrl)}&traffic_source=kelkoo&track_id=${trackId}&device=${device}&extra_params=${extraParams}`
-        offer._source.click_out_url = clickOutUrl
+        var clickOutUrl = `${clickOutBaseUrl}?keyword=${productUUID}&click_out_url=${base64_encode(offerUrl)}&traffic_source=kelkoo&track_id=${trackId}&device=${device}&extra_params=${extraParams}`
+        offer.click_out_url = clickOutUrl
     })
 
     return response.data
@@ -63,7 +63,7 @@ const getOffersByCategory = async (categoryName, limit=32, market='uk') => {
     const category = queryParams['category'] || null
     const delivery = queryParams['delivery'] || null
 
-    const response = await axios.get(`/category-search/${market}/${categoryName}?limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
+    const response = await axios.get(`/api/category/offers/${categoryName}?limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
 
     const typeTagStr = await typeTag.getTypeTag(categoryName)
     response.data.map(offer => {
