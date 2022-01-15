@@ -5,7 +5,6 @@ export default function ProductOffersMobile(props) {
 
     useEffect(() => {
         setProduct(props.product)
-        console.log(props.product)
     })
 
     if(!product) return null

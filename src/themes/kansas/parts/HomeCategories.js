@@ -12,11 +12,11 @@ const categories = [
         title: 'Furniture',
         description: 'Household furntiture from top brands',
     },
-    {
-        key: 'Electronics',
-        title: 'Electronics & Gaming',
-        description: 'Discover our most popular electronics and gaming offers',
-    },
+    // {
+    //     key: 'Electronics',
+    //     title: 'Electronics & Gaming',
+    //     description: 'Discover our most popular electronics and gaming offers',
+    // },
     {
         key: 'Sporting Goods',
         title: 'Sports Equipment & Outdoor Gear',
