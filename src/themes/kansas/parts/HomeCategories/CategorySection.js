@@ -11,7 +11,7 @@ export default function CategorySection(props) {
     }, [])
 
     const init = async () => {
-        const offers = await getOffersByCategory(props.category.key, 5)
+        const offers = await getOffersByCategory(props.category.category_id, 5)
         setOffers(offers)
     }
 

@@ -3,22 +3,22 @@ import { useEffect, useState } from 'react'
 
 const categories = [
     {
-        key: 'Clothing & Accessories',
+        category_id: 166,
         title: 'Clothing & Accessories',
         description: 'Shop clothing, shoes, and accessories for every occasion',
     },
     {
-        key: 'Furniture',
+        category_id: 222,
+        title: 'Electronics',
+        description: 'Discover our most popular electronics and gaming offers',
+    },
+    {
+        category_id: 436,
         title: 'Furniture',
         description: 'Household furntiture from top brands',
     },
-    // {
-    //     key: 'Electronics',
-    //     title: 'Electronics & Gaming',
-    //     description: 'Discover our most popular electronics and gaming offers',
-    // },
     {
-        key: 'Sporting Goods',
+        category_id: 988,
         title: 'Sports Equipment & Outdoor Gear',
         description: 'Explore our range of top-branded offers in Fitness, Camping, Hiking and much more',
     },

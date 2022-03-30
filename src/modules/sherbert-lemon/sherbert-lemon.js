@@ -54,7 +54,7 @@ const getProductSingle = async (productUUID) => {
     return response.data
 }
 
-const getOffersByCategory = async (categoryName, limit=32, market='uk') => {
+const getOffersByCategory = async (categoryID, limit=32, market='uk') => {
     const queryParams = queryString.parse(window.location.search)
     const sort = queryParams['sort'] || 'relevance'
     const min_price = queryParams['min_price'] || null
@@ -63,9 +63,9 @@ const getOffersByCategory = async (categoryName, limit=32, market='uk') => {
     const category = queryParams['category'] || null
     const delivery = queryParams['delivery'] || null
 
-    const response = await axios.get(`/api/category/offers/${categoryName}?limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
+    const response = await axios.get(`/api/category/offers/${categoryID}?limit=${limit}&sort=${sort}&min_price=${min_price}&max_price=${max_price}&brand=${brand}&category=${category}&delivery=${delivery}`)
 
-    const typeTagStr = await typeTag.getTypeTag(categoryName)
+    const typeTagStr = await typeTag.getTypeTag(categoryID)
     response.data.map(offer => {
         const decodedTypeTagStr = base64_decode(typeTagStr)
         const encodedTypeTagStr = base64_encode(`${decodedTypeTagStr}_${offer.product._source.merchant}`)
@@ -73,7 +73,7 @@ const getOffersByCategory = async (categoryName, limit=32, market='uk') => {
         var extraParams = JSON.stringify({
             'advertiser': offer.product._source.merchant,
         })
-        var clickOutUrl = `${clickOutBaseUrl}?keyword=${categoryName}&click_out_url=${base64_encode(offerUrl)}&traffic_source=kelkoo&track_id=${trackId}&device=${device}&extra_params=${extraParams}`
+        var clickOutUrl = `${clickOutBaseUrl}?keyword=${categoryID}&click_out_url=${base64_encode(offerUrl)}&traffic_source=kelkoo&track_id=${trackId}&device=${device}&extra_params=${extraParams}`
         offer.product._source.click_out_url = clickOutUrl
     })
 
