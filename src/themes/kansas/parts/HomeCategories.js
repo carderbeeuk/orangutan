@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const categories = [
     {
-        category_id: 166,
+        category_id: 167,
         title: 'Clothing & Accessories',
         description: 'Shop clothing, shoes, and accessories for every occasion',
     },

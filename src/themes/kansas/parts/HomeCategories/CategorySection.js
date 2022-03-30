@@ -11,6 +11,7 @@ export default function CategorySection(props) {
     }, [])
 
     const init = async () => {
+        console.log(props.category.category_id)
         const offers = await getOffersByCategory(props.category.category_id, 5)
         setOffers(offers)
     }
@@ -39,7 +40,7 @@ export default function CategorySection(props) {
                 paddingTop: 0
             }}>
                 <Link
-                    to={{pathname: `/shopping/category/${props.category.key}`}}
+                    to={{pathname: `/shopping/category/${props.category.category_id}`}}
                     style={{fontSize: '1.2em'}}>
                     View More <i style={{color: 'rgb(0, 113, 188)', fontSize: '1.1em', marginLeft: '5px'}} className="fas fa-chevron-down"></i>
                 </Link>

@@ -13,6 +13,7 @@ export default function ShoppingSearch(props) {
     const [bookmarkedProducts, setBookmarkedProducts] = useState([])
 
     useEffect(() => {
+        console.log(props.match.params)
         document.title = props.siteConfig.siteName + ' | ' + props.match.params.categoryId
         initOffers()
         initBookmarkedProducts()
@@ -114,7 +115,7 @@ export default function ShoppingSearch(props) {
                     <div style={{
                         padding: '25px 10px'
                     }}>
-                        <h3>'{props.match.params.categoryId}'</h3>
+                        {/* <h3>'{props.match.params.categoryId}'</h3> */}
                     </div>
                     <div className='clearfixx'></div>
                     {offers.map((offer, idx) => {
