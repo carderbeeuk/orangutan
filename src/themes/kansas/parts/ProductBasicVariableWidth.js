@@ -27,6 +27,20 @@ export default function ProductBasicVariableWidth(props) {
 
         return statement
     }
+
+    const uet_report_conversion = () => {
+        window.uetq = window.uetq || []
+        window.uetq.push("event", "clickout", {"revenue_value":"0.1","currency":"GBP"})
+        return true
+    }
+
+    const handleTracking = (e) => {
+        e.preventDefault()
+        if(uet_report_conversion()) {
+            // console.log(e.target.closest('a').href)
+            window.location.href = e.target.closest('a').href
+        }
+    }
     
 
     return(
@@ -45,13 +59,13 @@ export default function ProductBasicVariableWidth(props) {
                         <i className="far fa-bookmark"></i>
                     }
                 </div>
-                <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url}>
+                <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url} onClick={handleTracking}>
                     <div title={props.offer.product._source.title} className='image' style={{
                         background: `url(${props.offer.product._source.image_large})`
                     }}></div>
                 </a>
                 <div className='product-text'>
-                    <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url}>
+                    <a rel="nofollow" title={props.offer.product._source.title} href={props.offer.product._source.click_out_url} onClick={handleTracking}>
                         <h5 className='d-none d-md-block' title={props.offer.product._source.title}>{props.offer.product._source.title}</h5>
                         <h6 className='d-md-none' title={props.offer.product._source.title}>{props.offer.product._source.title}</h6>
                     </a>
